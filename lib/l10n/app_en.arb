@@ -1,0 +1,9 @@
+{
+  "appHomeScreenName": "Home",
+  "appHomeScreenButtonMessage": "You are already home",
+  "appHomeScreenBannerButtonMessage": "This is a banner",
+  "appHomeScreenBannerDismissLabel": "Dismiss",
+  "appHomeScreenHelpMessage": "How can I help you?",
+  "appHomeScreenBannerHelpLabel": "Help",
+  "appTodayScreenName": "today"
+}

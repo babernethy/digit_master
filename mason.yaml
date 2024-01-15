@@ -1,0 +1,23 @@
+# Register bricks which can be consumed via the Mason CLI.
+# https://github.com/felangel/mason
+bricks:
+  # hello: 0.1.0+1
+  # Bricks can also be imported via git url.
+  # Uncomment the following lines to import
+  # a brick from a remote git url.
+  starter:
+    git:
+      url: https://bitbucket.org/magicwrighter/mason-bricks.git
+      path: starter
+  routepage:
+    git:
+      url: https://bitbucket.org/magicwrighter/mason-bricks.git
+      path: routepage
+  featurescreen:
+    git:
+      url: https://bitbucket.org/magicwrighter/mason-bricks.git
+      path: featurescreen
+  featurerepo:
+    git:
+      url: https://bitbucket.org/magicwrighter/mason-bricks.git
+      path: featurerepo
