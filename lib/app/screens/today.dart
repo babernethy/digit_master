@@ -1,4 +1,5 @@
 import 'package:digit_master/app/router/routes.dart';
+import 'package:digit_master/app/screens/guess_entry_widget.dart';
 import 'package:digit_master/app/screens/hint_widget.dart';
 import 'package:digit_master/app/screens/puzzle_widget.dart';
 import 'package:digit_master/app/services/app_state.dart';
@@ -16,38 +17,99 @@ class TodayScreen extends ConsumerWidget {
     final appStateActions = ref.watch(appStateProvider.notifier);
     final todayState = ref.watch(todayStateProvider);
     final todayStateActions = ref.watch(todayStateProvider.notifier);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),
-        title: Text(context.l10n().appTodayScreenName),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () {
-              const HomeRoute().go(context);
+    final code = todayState.code;
+    final puzzle = todayState.puzzle;
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: const TabBar(
+            tabs: [
+              Text("Five Guesses"),
+              Text("Five Clues"),
+            ],
+          ),
+          backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),
+          title: Text(context.l10n().appTodayScreenName),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {
+                const HomeRoute().go(context);
+              },
+            ),
+          ],
+        ),
+        body: TabBarView(
+          children: [
+            FiveGuessesWidget(
+                code: code,
+                guesses: todayState.guesses,
+                todayStateActions: todayStateActions),
+            FiveCluesWidget(code: code, puzzle: puzzle),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FiveCluesWidget extends StatelessWidget {
+  const FiveCluesWidget({
+    super.key,
+    required this.code,
+    this.puzzle,
+  });
+
+  final List<int> code;
+  final CodePuzzle? puzzle;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Text(code.toString()),
+          if (puzzle != null) PuzzleWidget(puzzle: puzzle!),
+          GuessEntryWidget(
+            onGuess: (guess) => {
+              debugPrint(guess.toString()),
             },
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Text('${context.l10n().appTodayScreenName} Screen'),
-            Text(todayState.counter.toString()),
-            Text(todayState.code.toString()),
-            Text(todayState.guess.toString()),
-            Text(todayState.correct.toString()),
-            Text(todayState.wellPlaced.toString()),
-            if (todayState.puzzle != null)
-              PuzzleWidget(puzzle: todayState.puzzle!),
-            ElevatedButton(
-              onPressed: () {
-                todayStateActions.increment();
-              },
-              child: const Text('Increment'),
+    );
+  }
+}
+
+class FiveGuessesWidget extends StatelessWidget {
+  const FiveGuessesWidget({
+    super.key,
+    required this.code,
+    required this.guesses,
+    required this.todayStateActions,
+  });
+
+  final List<int> code;
+  final List<List<int>> guesses;
+  final TodayState todayStateActions;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ...guesses.map(
+            (e) => HintWidget(
+              guess: e,
+              code: code,
             ),
-          ],
-        ),
+          ),
+          GuessEntryWidget(
+            onGuess: (guess) => {todayStateActions.addGuess(guess)},
+          ),
+        ],
       ),
     );
   }

@@ -19,6 +19,7 @@ mixin _$TodayStateData {
   int get counter => throw _privateConstructorUsedError;
   List<int> get code => throw _privateConstructorUsedError;
   List<int> get guess => throw _privateConstructorUsedError;
+  List<List<int>> get guesses => throw _privateConstructorUsedError;
   int get correct => throw _privateConstructorUsedError;
   int get wellPlaced => throw _privateConstructorUsedError;
   CodePuzzle? get puzzle => throw _privateConstructorUsedError;
@@ -38,6 +39,7 @@ abstract class $TodayStateDataCopyWith<$Res> {
       {int counter,
       List<int> code,
       List<int> guess,
+      List<List<int>> guesses,
       int correct,
       int wellPlaced,
       CodePuzzle? puzzle});
@@ -61,6 +63,7 @@ class _$TodayStateDataCopyWithImpl<$Res, $Val extends TodayStateData>
     Object? counter = null,
     Object? code = null,
     Object? guess = null,
+    Object? guesses = null,
     Object? correct = null,
     Object? wellPlaced = null,
     Object? puzzle = freezed,
@@ -78,6 +81,10 @@ class _$TodayStateDataCopyWithImpl<$Res, $Val extends TodayStateData>
           ? _value.guess
           : guess // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      guesses: null == guesses
+          ? _value.guesses
+          : guesses // ignore: cast_nullable_to_non_nullable
+              as List<List<int>>,
       correct: null == correct
           ? _value.correct
           : correct // ignore: cast_nullable_to_non_nullable
@@ -118,6 +125,7 @@ abstract class _$$TodayStateDataImplCopyWith<$Res>
       {int counter,
       List<int> code,
       List<int> guess,
+      List<List<int>> guesses,
       int correct,
       int wellPlaced,
       CodePuzzle? puzzle});
@@ -140,6 +148,7 @@ class __$$TodayStateDataImplCopyWithImpl<$Res>
     Object? counter = null,
     Object? code = null,
     Object? guess = null,
+    Object? guesses = null,
     Object? correct = null,
     Object? wellPlaced = null,
     Object? puzzle = freezed,
@@ -157,6 +166,10 @@ class __$$TodayStateDataImplCopyWithImpl<$Res>
           ? _value._guess
           : guess // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      guesses: null == guesses
+          ? _value._guesses
+          : guesses // ignore: cast_nullable_to_non_nullable
+              as List<List<int>>,
       correct: null == correct
           ? _value.correct
           : correct // ignore: cast_nullable_to_non_nullable
@@ -180,11 +193,13 @@ class _$TodayStateDataImpl implements _TodayStateData {
       {this.counter = 0,
       final List<int> code = const [],
       final List<int> guess = const [],
+      final List<List<int>> guesses = const [],
       this.correct = 0,
       this.wellPlaced = 0,
       this.puzzle})
       : _code = code,
-        _guess = guess;
+        _guess = guess,
+        _guesses = guesses;
 
   @override
   @JsonKey()
@@ -207,6 +222,15 @@ class _$TodayStateDataImpl implements _TodayStateData {
     return EqualUnmodifiableListView(_guess);
   }
 
+  final List<List<int>> _guesses;
+  @override
+  @JsonKey()
+  List<List<int>> get guesses {
+    if (_guesses is EqualUnmodifiableListView) return _guesses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_guesses);
+  }
+
   @override
   @JsonKey()
   final int correct;
@@ -218,7 +242,7 @@ class _$TodayStateDataImpl implements _TodayStateData {
 
   @override
   String toString() {
-    return 'TodayStateData(counter: $counter, code: $code, guess: $guess, correct: $correct, wellPlaced: $wellPlaced, puzzle: $puzzle)';
+    return 'TodayStateData(counter: $counter, code: $code, guess: $guess, guesses: $guesses, correct: $correct, wellPlaced: $wellPlaced, puzzle: $puzzle)';
   }
 
   @override
@@ -229,6 +253,7 @@ class _$TodayStateDataImpl implements _TodayStateData {
             (identical(other.counter, counter) || other.counter == counter) &&
             const DeepCollectionEquality().equals(other._code, _code) &&
             const DeepCollectionEquality().equals(other._guess, _guess) &&
+            const DeepCollectionEquality().equals(other._guesses, _guesses) &&
             (identical(other.correct, correct) || other.correct == correct) &&
             (identical(other.wellPlaced, wellPlaced) ||
                 other.wellPlaced == wellPlaced) &&
@@ -241,6 +266,7 @@ class _$TodayStateDataImpl implements _TodayStateData {
       counter,
       const DeepCollectionEquality().hash(_code),
       const DeepCollectionEquality().hash(_guess),
+      const DeepCollectionEquality().hash(_guesses),
       correct,
       wellPlaced,
       puzzle);
@@ -258,6 +284,7 @@ abstract class _TodayStateData implements TodayStateData {
       {final int counter,
       final List<int> code,
       final List<int> guess,
+      final List<List<int>> guesses,
       final int correct,
       final int wellPlaced,
       final CodePuzzle? puzzle}) = _$TodayStateDataImpl;
@@ -268,6 +295,8 @@ abstract class _TodayStateData implements TodayStateData {
   List<int> get code;
   @override
   List<int> get guess;
+  @override
+  List<List<int>> get guesses;
   @override
   int get correct;
   @override

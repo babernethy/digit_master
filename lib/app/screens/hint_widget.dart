@@ -35,10 +35,13 @@ class HintWidget extends StatelessWidget {
     final wellPlaced = this.wellPlaced();
     final correct = this.correct();
     final incorrect = correct - wellPlaced;
-    ;
     var hint = "";
     if (wellPlaced == 0 && correct == 0) {
       return "Nothing is correct";
+    }
+
+    if (wellPlaced == 4) {
+      return "You win!";
     }
 
     hint += "${headerByNumber(correct).capitalize()} correct";
@@ -113,7 +116,7 @@ class HintWidget extends StatelessWidget {
           ),
         ),
         Container(
-          width: 350,
+          width: 300,
           padding: const EdgeInsets.all(10),
           child:
               Text(hint(), style: const TextStyle(fontWeight: FontWeight.bold)),
