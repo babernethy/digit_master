@@ -7,6 +7,7 @@ import 'package:digit_master/app/services/code_puzzle.dart';
 import 'package:digit_master/app/services/today_state.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:collection/collection.dart';
 
 class TodayScreen extends ConsumerWidget {
   const TodayScreen({super.key});
@@ -106,9 +107,11 @@ class FiveGuessesWidget extends StatelessWidget {
               code: code,
             ),
           ),
-          GuessEntryWidget(
-            onGuess: (guess) => {todayStateActions.addGuess(guess)},
-          ),
+          if (guesses.isEmpty ||
+              !const DeepCollectionEquality().equals(guesses.last, code))
+            GuessEntryWidget(
+              onGuess: (guess) => {todayStateActions.addGuess(guess)},
+            ),
         ],
       ),
     );

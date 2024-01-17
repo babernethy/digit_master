@@ -201,7 +201,7 @@ class GuessNumber extends StatelessWidget {
       margin: const EdgeInsets.all(2),
       height: 75,
       width: 60,
-      color: const Color.fromARGB(255, 3, 0, 85),
+      color: const Color.fromARGB(255, 7, 2, 146),
       child: Center(
         child: Text(
           guessNumber != null ? guessNumber.toString() : '?',
@@ -251,7 +251,7 @@ class NumberButton extends StatelessWidget {
             keyNumber.toString(),
             style: TextStyle(
               color: guestEntryStateData.guess.contains(keyNumber)
-                  ? const Color.fromARGB(255, 3, 0, 85)
+                  ? const Color.fromARGB(255, 7, 2, 146)
                   : Colors.yellow,
               fontSize: 20,
             ),

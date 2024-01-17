@@ -93,16 +93,17 @@ class HintWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool winner = wellPlaced() == 4;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        //const Text("guess"),
         ...guess.map(
           (int i) => Container(
             margin: const EdgeInsets.all(2),
             height: 75,
             width: 60,
-            color: Colors.black,
+            color:
+                winner ? const Color.fromARGB(255, 150, 11, 1) : Colors.black,
             //padding: const EdgeInsets.all(2),
             child: Center(
               child: Text(

@@ -134,7 +134,25 @@ class TodayState extends _$TodayState {
   }
 }
 
+List<int> generateRandomListByDate() {
+  final now = DateTime.now();
+  // Using the year, month, and day as the seed
+  final int seed = now.year * 10000 + now.month * 100 + now.day;
+  final random = Random(seed);
+
+  final Set<int> uniqueNumbers = {};
+  // Continue until the set contains four unique numbers
+  while (uniqueNumbers.length < 4) {
+    // Generate a random number and add to the set
+    uniqueNumbers.add(random.nextInt(10)); // Adjust range as needed
+  }
+
+  return uniqueNumbers.toList();
+}
+
 List<int> randomCode() {
+  return generateRandomListByDate();
+
   final random = Random();
   final digits = List<int>.generate(10, (i) => i); // List from 0 to 9
   digits.shuffle(random);
