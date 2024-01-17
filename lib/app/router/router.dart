@@ -16,7 +16,7 @@ Raw<GoRouter> router(RouterRef ref) {
     navigatorKey: _key,
     refreshListenable: notifier,
     debugLogDiagnostics: true,
-    initialLocation: HomeRoute.path,
+    initialLocation: TodayRoute.path,
     routes: notifier.routes,
     redirect: notifier.redirect,
   );

@@ -12,26 +12,29 @@ class PuzzleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          color: Colors.lightBlue,
-          padding: const EdgeInsets.all(20),
-          child: Center(
-            child: Column(
-              children: puzzle.hints
-                  .map(
-                    (e) => HintWidget(
-                      guess: e,
-                      code: puzzle.code,
-                    ),
-                  )
-                  .toList(),
+    return Container(
+      width: 600,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            color: Colors.lightBlue,
+            padding: const EdgeInsets.all(20),
+            child: Center(
+              child: Column(
+                children: puzzle.hints
+                    .map(
+                      (e) => HintWidget(
+                        guess: e,
+                        code: puzzle.code,
+                      ),
+                    )
+                    .toList(),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
