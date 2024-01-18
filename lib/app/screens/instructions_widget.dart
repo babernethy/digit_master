@@ -1,3 +1,5 @@
+// ignore_for_file: require_trailing_commas
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +12,7 @@ class InstructionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyle =
         GoogleFonts.tekoTextTheme().displayLarge?.copyWith(fontSize: 22);
-    TextStyle(color: Colors.yellow);
+    const TextStyle(color: Colors.yellow);
     final titleTextStyle = GoogleFonts.cinzelDecorativeTextTheme()
         .headlineLarge
         ?.copyWith(color: Colors.white, fontSize: 32);

@@ -106,7 +106,8 @@ class TodayState extends _$TodayState {
       final correct = countMatchingIntegers(secretCode, currentGuess);
       final wellPlaced = countCorrectlyPlacedIntegers(secretCode, currentGuess);
       debugPrint(
-          '$guessCount: Secret code: $secretCode - Current guess: $currentGuess - $correct number is correct, $wellPlaced are well placed, possible codes: ${possibleCodes.length}');
+        '$guessCount: Secret code: $secretCode - Current guess: $currentGuess - $correct number is correct, $wellPlaced are well placed, possible codes: ${possibleCodes.length}',
+      );
       final feedback = getFeedback(secretCode, currentGuess);
       if (feedback['correct'] == 4) {
         if (guessCount == 6) {

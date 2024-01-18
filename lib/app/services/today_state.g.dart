@@ -6,7 +6,7 @@ part of 'today_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$createPuzzleHash() => r'cbd01ec826a0c08f2f0601eb5823db51d0a29127';
+String _$createPuzzleHash() => r'976693d7cd067ae93416e3dc176ed13fa0fa63a5';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -155,7 +155,7 @@ class _CreatePuzzleProviderElement
   List<int> get code => (origin as CreatePuzzleProvider).code;
 }
 
-String _$todayStateHash() => r'a9234cfa21a6585fe8cb24c6d16f0c0f025b1818';
+String _$todayStateHash() => r'347ef41615eb658a17750a02b2ac73bff78a9d6a';
 
 /// See also [TodayState].
 @ProviderFor(TodayState)

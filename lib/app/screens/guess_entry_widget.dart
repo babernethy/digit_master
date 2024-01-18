@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -69,6 +67,7 @@ class GuessEntryWidget extends ConsumerWidget {
     final guessEntryState = ref.watch(guessEntryStateProvider);
     final guessEntryActions = ref.watch(guessEntryStateProvider.notifier);
     final currentGuess = guessEntryState.guess;
+    // ignore: prefer_is_empty
     final int? firstDigit = currentGuess.length > 0 ? currentGuess[0] : null;
     final int? secondDigit = currentGuess.length > 1 ? currentGuess[1] : null;
     final int? thirdDigit = currentGuess.length > 2 ? currentGuess[2] : null;

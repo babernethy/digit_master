@@ -1,4 +1,3 @@
-import 'package:digit_master/app/screens/home.dart';
 import 'package:digit_master/app/screens/today.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

@@ -1,28 +1,25 @@
-import 'package:digit_master/app/router/routes.dart';
+import 'package:collection/collection.dart';
 import 'package:digit_master/app/screens/guess_entry_widget.dart';
 import 'package:digit_master/app/screens/hint_widget.dart';
 import 'package:digit_master/app/screens/instructions_widget.dart';
 import 'package:digit_master/app/screens/puzzle_widget.dart';
-import 'package:digit_master/app/services/app_state.dart';
 import 'package:digit_master/app/services/code_puzzle.dart';
 import 'package:digit_master/app/services/today_state.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:collection/collection.dart';
 
 class TodayScreen extends ConsumerWidget {
   const TodayScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch(appStateProvider);
-    final appStateActions = ref.watch(appStateProvider.notifier);
     final todayState = ref.watch(todayStateProvider);
     final todayStateActions = ref.watch(todayStateProvider.notifier);
     final code = todayState.code;
     final puzzle = todayState.puzzle;
     const textStyle = TextStyle(color: Colors.yellow);
+
     final titleTextStyle = GoogleFonts.cinzelDecorativeTextTheme()
         .headlineLarge
         ?.copyWith(color: Colors.white);
@@ -108,12 +105,23 @@ class FiveCluesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final instructionStyle =
+        GoogleFonts.tekoTextTheme().displayLarge?.copyWith(fontSize: 22);
     return SingleChildScrollView(
       child: Transform.scale(
         scale: scale,
         child: Column(
           children: [
-            // Text(code.toString()),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Here are five clues, you have one guess to crack the code.',
+              style: instructionStyle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             if (puzzle != null) PuzzleWidget(puzzle: puzzle!),
             GuessEntryWidget(
               onGuess: (guess) => {
@@ -143,10 +151,22 @@ class FiveGuessesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final instructionStyle =
+        GoogleFonts.tekoTextTheme().displayLarge?.copyWith(fontSize: 22);
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            'Try to guess the code in 5 guesses (or as few as possible).',
+            style: instructionStyle,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           ...guesses.map(
             (e) => HintWidget(
               guess: e,
