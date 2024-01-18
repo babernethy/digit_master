@@ -34,6 +34,7 @@ class TodayState extends _$TodayState {
   TodayStateData build() {
     if (_cachedState == null) {
       final code = randomCode();
+      print(code);
       ref.listen(createPuzzleProvider(code), updatePuzzle);
       return TodayStateData(code: code);
     }

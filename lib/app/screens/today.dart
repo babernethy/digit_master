@@ -1,6 +1,7 @@
 import 'package:digit_master/app/router/routes.dart';
 import 'package:digit_master/app/screens/guess_entry_widget.dart';
 import 'package:digit_master/app/screens/hint_widget.dart';
+import 'package:digit_master/app/screens/instructions_widget.dart';
 import 'package:digit_master/app/screens/puzzle_widget.dart';
 import 'package:digit_master/app/services/app_state.dart';
 import 'package:digit_master/app/services/code_puzzle.dart';
@@ -30,7 +31,7 @@ class TodayScreen extends ConsumerWidget {
       child: Scaffold(
         backgroundColor: Colors.lightBlue.shade300,
         appBar: AppBar(
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Padding(
                 padding: EdgeInsets.all(8.0),
@@ -60,18 +61,10 @@ class TodayScreen extends ConsumerWidget {
             "Crack the Code",
             style: titleTextStyle,
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.home),
-              onPressed: () {
-                const HomeRoute().go(context);
-              },
-            ),
-          ],
         ),
         body: TabBarView(
           children: [
-            const Text("Instructions"),
+            const InstructionsWidget(),
             FiveGuessesWidget(
               code: code,
               guesses: todayState.guesses,

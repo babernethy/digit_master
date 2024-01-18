@@ -5,23 +5,23 @@ import 'package:go_router/go_router.dart';
 
 part 'routes.g.dart';
 
-@TypedGoRoute<HomeRoute>(
-  path: '/',
-)
-class HomeRoute extends GoRouteData {
-  const HomeRoute();
-  static const path = '/';
+// @TypedGoRoute<HomeRoute>(
+//   path: '/',
+// )
+// class HomeRoute extends GoRouteData {
+//   const HomeRoute();
+//   static const path = '/';
 
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const HomeScreen();
-}
+//   @override
+//   Widget build(BuildContext context, GoRouterState state) => const HomeScreen();
+// }
 
 @TypedGoRoute<TodayRoute>(
-  path: '/today',
+  path: '/',
 )
 class TodayRoute extends GoRouteData {
   const TodayRoute();
- static const path = '/today';
+  static const path = '/';
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
