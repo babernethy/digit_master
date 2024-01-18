@@ -55,7 +55,7 @@ class TodayScreen extends ConsumerWidget {
           ),
           backgroundColor: Colors.black,
           title: Text(
-            "Crack the Code",
+            "Digit Master - Crack the Code",
             style: titleTextStyle,
           ),
         ),
@@ -71,15 +71,27 @@ class TodayScreen extends ConsumerWidget {
             LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 if (constraints.maxWidth > 640) {
-                  return FiveCluesWidget(code: code, puzzle: puzzle);
+                  return FiveCluesWidget(
+                    code: code,
+                    puzzle: puzzle,
+                    todayStateActions: todayStateActions,
+                    todayState: todayState,
+                  );
                 } else {
-                  return FiveCluesWidget(code: code, puzzle: puzzle);
+                  return FiveCluesWidget(
+                    code: code,
+                    puzzle: puzzle,
+                    todayStateActions: todayStateActions,
+                    todayState: todayState,
+                  );
 // need to figure this out another time
                   final scale = constraints.maxWidth / 700;
                   return FiveCluesWidget(
                     code: code,
                     puzzle: puzzle,
                     scale: scale,
+                    todayStateActions: todayStateActions,
+                    todayState: todayState,
                   );
                 }
               },
@@ -97,11 +109,15 @@ class FiveCluesWidget extends StatelessWidget {
     required this.code,
     this.puzzle,
     this.scale = 1,
+    required this.todayStateActions,
+    required this.todayState,
   });
 
   final List<int> code;
   final CodePuzzle? puzzle;
   final double scale;
+  final TodayState todayStateActions;
+  final TodayStateData todayState;
 
   @override
   Widget build(BuildContext context) {
@@ -123,11 +139,21 @@ class FiveCluesWidget extends StatelessWidget {
               height: 10,
             ),
             if (puzzle != null) PuzzleWidget(puzzle: puzzle!),
-            GuessEntryWidget(
-              onGuess: (guess) => {
-                debugPrint(guess.toString()),
-              },
-            ),
+            if (todayState.oneGuess.isEmpty)
+              GuessEntryWidget(
+                onGuess: (guess) => {
+                  debugPrint(guess.toString()),
+                  todayStateActions.updateOneGuess(guess),
+                },
+              ),
+            if (todayState.oneGuess.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0),
+                child: HintWidget(
+                  guess: todayState.oneGuess,
+                  code: code,
+                ),
+              ),
           ],
         ),
       ),
@@ -178,6 +204,13 @@ class FiveGuessesWidget extends StatelessWidget {
             GuessEntryWidget(
               onGuess: (guess) => {todayStateActions.addGuess(guess)},
             ),
+          const Padding(
+            padding: EdgeInsets.only(top: 18.0),
+            child: Image(
+              image: AssetImage('assets/images/logo.png'),
+              width: 225,
+            ),
+          ),
         ],
       ),
     );

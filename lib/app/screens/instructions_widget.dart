@@ -111,6 +111,23 @@ class InstructionsWidget extends StatelessWidget {
               'Good Luck',
               style: titleTextStyle,
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  showAboutDialog(
+                      context: context,
+                      applicationName: 'Digit Master',
+                      applicationIcon: const Image(
+                          image: AssetImage('assets/images/logo_64.png')),
+                      applicationVersion: '1.0.0',
+                      children: [
+                        const Text(
+                            'This is a simple Mastermind style numeric code cracking game inspired by a "Crack the Code" puzzle from Puzzlemaster.ca'),
+                      ]);
+                },
+                child: const Text('About this App')),
           ],
         ),
       ),

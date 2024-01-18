@@ -155,7 +155,7 @@ class _CreatePuzzleProviderElement
   List<int> get code => (origin as CreatePuzzleProvider).code;
 }
 
-String _$todayStateHash() => r'347ef41615eb658a17750a02b2ac73bff78a9d6a';
+String _$todayStateHash() => r'337c1d450bef9cc3f66d0931da1712c3987e5982';
 
 /// See also [TodayState].
 @ProviderFor(TodayState)
