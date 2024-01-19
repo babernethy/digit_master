@@ -99,17 +99,37 @@ class HintWidget extends StatelessWidget {
       children: [
         ...guess.map(
           (int i) => Container(
+            key: ValueKey<String>(i.toString()),
             margin: const EdgeInsets.all(2),
             height: 75,
             width: 60,
-            color:
-                winner ? const Color.fromARGB(255, 150, 11, 1) : Colors.black,
-            //padding: const EdgeInsets.all(2),
+            // color:
+            //     winner ? const Color.fromARGB(255, 150, 11, 1) : Colors.black,
+            decoration: winner
+                ? BoxDecoration(
+                    border: Border.all(width: 2, color: Colors.black38),
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 146, 10, 0),
+                        Color.fromARGB(136, 174, 84, 0),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  )
+                : const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.black, Colors.black54],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+
             child: Center(
               child: Text(
                 i.toString(),
-                style: const TextStyle(
-                  color: Colors.yellow,
+                style: TextStyle(
+                  color: winner ? Colors.white : Colors.yellow,
                   fontSize: 55,
                 ),
               ),

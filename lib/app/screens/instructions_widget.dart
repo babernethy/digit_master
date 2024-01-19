@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:onboarding_overlay/onboarding_overlay.dart';
 
 class InstructionsWidget extends StatelessWidget {
   const InstructionsWidget({
@@ -38,6 +39,15 @@ class InstructionsWidget extends StatelessWidget {
               'There is a new code for today ${DateTime.now().toIso8601String().substring(0, 10)}.',
               style: textStyle,
             ),
+            ElevatedButton(
+                onPressed: () {
+                  final OnboardingState? onboarding = Onboarding.of(context);
+
+                  if (onboarding != null) {
+                    onboarding.show();
+                  }
+                },
+                child: const Text('Quick Start')),
             const SizedBox(
               height: 10,
             ),

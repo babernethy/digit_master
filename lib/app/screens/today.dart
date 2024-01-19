@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:digit_master/app/app.dart';
 import 'package:digit_master/app/screens/guess_entry_widget.dart';
 import 'package:digit_master/app/screens/hint_widget.dart';
 import 'package:digit_master/app/screens/instructions_widget.dart';
@@ -8,6 +9,32 @@ import 'package:digit_master/app/services/today_state.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:onboarding_overlay/onboarding_overlay.dart';
+
+final List<OnboardingStep> steps = [
+  OnboardingStep(
+    showPulseAnimation: true,
+    focusNode: overlayKeys[0],
+    bodyText: 'If you want to try to guess the code in 5 guesses, click here.',
+    fullscreen: false,
+    titleText: '5 Guesses',
+    overlayColor: Colors.lightBlue.withOpacity(0.9),
+    overlayShape: const CircleBorder(),
+    overlayBehavior: HitTestBehavior.deferToChild,
+  ),
+  OnboardingStep(
+    showPulseAnimation: true,
+    focusNode: overlayKeys[1],
+    bodyText:
+        'If you want to try to guess the code in 1 guess, click here. You will get 5 clues to help you.',
+    //shape: const CircleBorder(),
+    overlayColor: Colors.lightBlue.withOpacity(0.9),
+    overlayShape: const CircleBorder(),
+    overlayBehavior: HitTestBehavior.deferToChild,
+    fullscreen: false,
+    titleText: '5 Clues',
+  ),
+];
 
 class TodayScreen extends ConsumerWidget {
   const TodayScreen({super.key});
@@ -28,27 +55,33 @@ class TodayScreen extends ConsumerWidget {
       child: Scaffold(
         backgroundColor: Colors.lightBlue.shade300,
         appBar: AppBar(
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   "Instructions",
                   style: textStyle,
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Five Guesses",
-                  style: textStyle,
+              Focus(
+                focusNode: overlayKeys[0],
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Five Guesses",
+                    style: textStyle,
+                  ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Five Clues",
-                  style: textStyle,
+              Focus(
+                focusNode: overlayKeys[1],
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Five Clues",
+                    style: textStyle,
+                  ),
                 ),
               ),
             ],

@@ -26,6 +26,7 @@ dependencies:
   intl: ^0.18.1
   json_annotation: ^4.8.1
   number_to_words_english: ^2.0.2
+  onboarding_overlay: ^3.2.1
   riverpod_annotation: ^2.3.3
 
 dev_dependencies:

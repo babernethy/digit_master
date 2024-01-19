@@ -5,14 +5,23 @@ import 'package:flutter_helpers/flutter_helpers.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:onboarding_overlay/onboarding_overlay.dart';
 
 // Define your seed colors.
-const Color primarySeedColor = Color(0xFF6750A4);
-const Color secondarySeedColor = Color(0xFF3871BB);
-const Color tertiarySeedColor = Color(0xFF6CA450);
+const Color primarySeedColor = Colors.lightBlue;
+const Color secondarySeedColor = Colors.yellow;
+const Color tertiarySeedColor = Color.fromARGB(255, 7, 2, 146);
+
+final List<FocusNode> overlayKeys = <FocusNode>[
+  FocusNode(),
+  FocusNode(),
+  FocusNode(),
+];
 
 class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+  final GlobalKey<OnboardingState> onboardingKey = GlobalKey<OnboardingState>();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

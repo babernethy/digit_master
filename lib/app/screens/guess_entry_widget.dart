@@ -1,3 +1,4 @@
+import 'package:digit_master/app/screens/animated_fade_out_in.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -200,14 +201,30 @@ class GuessNumber extends StatelessWidget {
       margin: const EdgeInsets.all(2),
       height: 75,
       width: 60,
-      color: const Color.fromARGB(255, 7, 2, 146),
+      //  color: const Color.fromARGB(255, 7, 2, 146),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 7, 2, 146),
+            Color.fromARGB(255, 67, 2, 146),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
       child: Center(
-        child: Text(
-          guessNumber != null ? guessNumber.toString() : '?',
-          style: const TextStyle(
-            color: Colors.yellow,
-            fontSize: 55,
-          ),
+        child: AnimatedFadeOutIn(
+          duration: const Duration(milliseconds: 200),
+          data: guessNumber,
+          builder: (int? data) {
+            return Text(
+              data != null ? data.toString() : '?',
+              style: const TextStyle(
+                color: Colors.yellow,
+                fontSize: 55,
+              ),
+            );
+          },
         ),
       ),
     );
