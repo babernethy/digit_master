@@ -53,6 +53,7 @@ The `webServer` config in `playwright.config.mjs` auto-starts a static server on
 | `five-guesses.spec.mjs` | Enter guesses, see feedback, clear, backspace, duplicate handling |
 | `five-clues.spec.mjs` | View 5 hints, enter a single guess, see result |
 | `daily-puzzle.spec.mjs` | Daily seed determinism, console-logged code validation |
+| `solve-puzzle.spec.mjs` | Reads secret code from console and solves puzzle in both modes |
 
 ## Coordinate map
 

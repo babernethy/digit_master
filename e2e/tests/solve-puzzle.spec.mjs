@@ -1,11 +1,10 @@
 // E2E: Solve the puzzle — read the secret code from console and enter the winning guess.
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import {
   waitForFlutterReady,
   goToTab,
   enterAndSubmitGuess,
   screenshot,
-  expectVisualChange,
   coords,
   tapCanvas,
 } from './flutter-helpers.mjs';
@@ -17,20 +16,20 @@ const clueKeypad = (digit) => {
   return { x: base.x, y: base.y + CLUES_KEYPAD_Y_OFFSET };
 };
 const clueSubmit = { x: coords.submit.x, y: coords.submit.y + CLUES_KEYPAD_Y_OFFSET };
+const CODE_REGEX = /^\[(\d, ){3}\d\]$/;
 
 test.describe('Solve the Puzzle', () => {
   test('crack the code in Five Guesses mode', async ({ page }) => {
-    // Capture the secret code from console output.
     let secretCode = null;
-    const codeRegex = /^\[(\d, ){3}\d\]$/;
     page.on('console', (msg) => {
-      if (!secretCode && codeRegex.test(msg.text())) {
+      if (!secretCode && CODE_REGEX.test(msg.text())) {
         secretCode = msg.text().match(/\d/g).map(Number);
       }
     });
 
     await page.goto('/');
     await waitForFlutterReady(page);
+    expect(secretCode, 'Secret code should appear in console during init').not.toBeNull();
 
     // Navigate to Five Guesses.
     await goToTab(page, 'fiveGuesses');
@@ -51,15 +50,15 @@ test.describe('Solve the Puzzle', () => {
 
   test('crack the code in Five Clues mode', async ({ page }) => {
     let secretCode = null;
-    const codeRegex = /^\[(\d, ){3}\d\]$/;
     page.on('console', (msg) => {
-      if (!secretCode && codeRegex.test(msg.text())) {
+      if (!secretCode && CODE_REGEX.test(msg.text())) {
         secretCode = msg.text().match(/\d/g).map(Number);
       }
     });
 
     await page.goto('/');
     await waitForFlutterReady(page);
+    expect(secretCode, 'Secret code should appear in console during init').not.toBeNull();
 
     await goToTab(page, 'fiveClues');
     await page.waitForTimeout(4000); // Wait for puzzle generation.

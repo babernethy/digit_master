@@ -1,6 +1,8 @@
 // E2E: Daily puzzle consistency — same code for the same calendar day.
 import { test, expect } from '@playwright/test';
-import { waitForFlutterReady, goToTab, screenshot } from './flutter-helpers.mjs';
+import { waitForFlutterReady, goToTab } from './flutter-helpers.mjs';
+
+const CODE_REGEX = /^\[(\d, ){3}\d\]$/;
 
 test.describe('Daily Puzzle Consistency', () => {
   test('same day produces same secret code across reloads', async ({ page }) => {
@@ -9,23 +11,23 @@ test.describe('Daily Puzzle Consistency', () => {
     // shuffled set internally, so screenshot comparison is unreliable for that tab.
     // Instead, verify the console-logged code is identical across reloads.
     const codesFromConsole = [];
-    const codeRegex = /^\[(\d, ){3}\d\]$/;
 
     page.on('console', (msg) => {
-      if (codeRegex.test(msg.text())) {
+      if (CODE_REGEX.test(msg.text())) {
         codesFromConsole.push(msg.text());
       }
     });
 
     await page.goto('/');
     await waitForFlutterReady(page);
-    expect(codesFromConsole.length).toBeGreaterThanOrEqual(1);
+    // The 6-second waitForFlutterReady is sufficient for the console log to arrive.
+    expect(codesFromConsole.length, 'First code should be logged').toBeGreaterThanOrEqual(1);
     const firstCode = codesFromConsole[codesFromConsole.length - 1];
 
     // Reload
     await page.reload();
     await waitForFlutterReady(page);
-    expect(codesFromConsole.length).toBeGreaterThanOrEqual(2);
+    expect(codesFromConsole.length, 'Second code should be logged').toBeGreaterThanOrEqual(2);
     const secondCode = codesFromConsole[codesFromConsole.length - 1];
 
     // Same daily code.
@@ -57,9 +59,8 @@ test.describe('Daily Puzzle Consistency', () => {
     await page.goto('/');
     await waitForFlutterReady(page);
 
-    // Look for a console log that matches a list of 4 digits, e.g. "[1, 2, 3, 4]"
-    const codeLog = consoleLogs.find((log) => /^\[(\d, ){3}\d\]$/.test(log));
-    expect(codeLog).toBeDefined();
+    const codeLog = consoleLogs.find((log) => CODE_REGEX.test(log));
+    expect(codeLog, 'Secret code should appear in console output').toBeDefined();
 
     // Parse the code and verify uniqueness.
     const digits = codeLog.match(/\d/g).map(Number);

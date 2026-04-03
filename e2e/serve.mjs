@@ -3,7 +3,7 @@
 
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
-import { join, extname } from 'node:path';
+import { join, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -28,6 +28,14 @@ const MIME = {
 const server = createServer(async (req, res) => {
   let urlPath = new URL(req.url, `http://localhost:${PORT}`).pathname;
   let filePath = join(WEB_DIR, urlPath);
+
+  // Prevent path traversal — reject requests that escape WEB_DIR.
+  const resolved = resolve(filePath);
+  if (!resolved.startsWith(WEB_DIR)) {
+    res.writeHead(403);
+    res.end('Forbidden');
+    return;
+  }
 
   try {
     const s = await stat(filePath);

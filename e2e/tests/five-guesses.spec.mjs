@@ -3,14 +3,11 @@ import { test } from '@playwright/test';
 import {
   waitForFlutterReady,
   goToTab,
-  enterGuess,
-  submitGuess,
   enterAndSubmitGuess,
   screenshot,
   expectVisualChange,
   coords,
   tapCanvas,
-  GUESS_ROW_HEIGHT,
 } from './flutter-helpers.mjs';
 
 test.describe('Five Guesses Mode', () => {

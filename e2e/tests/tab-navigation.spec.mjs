@@ -21,7 +21,7 @@ test.describe('Tab Navigation', () => {
 
     await goToTab(page, 'instructions');
     const backToInstructions = await page.screenshot();
-    // Should look like the original instructions view.
+    // Verify we left the Guesses tab (view changed back).
     expectVisualChange(guessesScreen, backToInstructions);
   });
 
