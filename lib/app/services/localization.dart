@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'localization.g.dart';
 
 @riverpod
-Localization getLocalization(GetLocalizationRef ref) {
+Localization getLocalization(Ref ref) {
   return Localization();
 }
 

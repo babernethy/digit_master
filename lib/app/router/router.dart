@@ -8,7 +8,7 @@ part 'router.g.dart';
 final _key = GlobalKey<NavigatorState>(debugLabel: 'routerKey');
 
 @riverpod
-Raw<GoRouter> router(RouterRef ref) {
+Raw<GoRouter> router(Ref ref) {
   return GoRouter(
     navigatorKey: _key,
     debugLogDiagnostics: true,

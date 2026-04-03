@@ -9,7 +9,7 @@ part 'today_state.freezed.dart';
 part 'today_state.g.dart';
 
 @freezed
-class TodayStateData with _$TodayStateData {
+abstract class TodayStateData with _$TodayStateData {
   factory TodayStateData({
     @Default(0) int counter,
     @Default([]) List<int> code,
@@ -25,7 +25,7 @@ class TodayStateData with _$TodayStateData {
 //this will allow for the state of the page/game to grab a puzzle when it loads
 //based on the current date, and do that in a safe/future way
 @riverpod
-Future<CodePuzzle> createPuzzle(CreatePuzzleRef ref, List<int> code) async {
+Future<CodePuzzle> createPuzzle(Ref ref, List<int> code) async {
   return createNewPuzzle(code);
 }
 

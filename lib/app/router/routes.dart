@@ -19,7 +19,7 @@ part 'routes.g.dart';
 @TypedGoRoute<TodayRoute>(
   path: '/',
 )
-class TodayRoute extends GoRouteData {
+class TodayRoute extends GoRouteData with $TodayRoute {
   const TodayRoute();
   static const path = '/';
 

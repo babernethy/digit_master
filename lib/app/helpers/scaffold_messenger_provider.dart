@@ -5,12 +5,12 @@ part 'scaffold_messenger_provider.g.dart';
 
 @riverpod
 GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey(
-  ScaffoldMessengerKeyRef ref,
+  Ref ref,
 ) {
   return GlobalKey<ScaffoldMessengerState>();
 }
 
 @riverpod
-ScaffoldMessengerState scaffoldMessenger(ScaffoldMessengerRef ref) {
+ScaffoldMessengerState scaffoldMessenger(Ref ref) {
   return ref.watch(scaffoldMessengerKeyProvider).currentState!;
 }
