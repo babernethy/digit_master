@@ -1,7 +1,7 @@
 import 'package:digit_master/app/screens/animated_fade_out_in.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'guess_entry_widget.freezed.dart';

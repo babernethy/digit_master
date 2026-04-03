@@ -7,8 +7,8 @@ import 'package:digit_master/app/screens/puzzle_widget.dart';
 import 'package:digit_master/app/services/code_puzzle.dart';
 import 'package:digit_master/app/services/today_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:onboarding_overlay/onboarding_overlay.dart';
 
 final List<OnboardingStep> steps = [

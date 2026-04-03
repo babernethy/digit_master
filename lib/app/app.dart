@@ -3,8 +3,8 @@ import 'package:digit_master/app/router/router.dart';
 import 'package:digit_master/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:onboarding_overlay/onboarding_overlay.dart';
 
 // Define your seed colors.
