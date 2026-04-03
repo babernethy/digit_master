@@ -6,20 +6,46 @@ part of 'localization.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getLocalizationHash() => r'dea65e6def351d10b416dcd2ef90ce964323a379';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [getLocalization].
 @ProviderFor(getLocalization)
-final getLocalizationProvider = AutoDisposeProvider<Localization>.internal(
-  getLocalization,
-  name: r'getLocalizationProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getLocalizationHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final getLocalizationProvider = GetLocalizationProvider._();
 
-typedef GetLocalizationRef = AutoDisposeProviderRef<Localization>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+final class GetLocalizationProvider
+    extends $FunctionalProvider<Localization, Localization, Localization>
+    with $Provider<Localization> {
+  GetLocalizationProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getLocalizationProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getLocalizationHash();
+
+  @$internal
+  @override
+  $ProviderElement<Localization> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Localization create(Ref ref) {
+    return getLocalization(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Localization value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Localization>(value),
+    );
+  }
+}
+
+String _$getLocalizationHash() => r'02510a400b31403d10d7e8d5f7d8d7e801de9f43';

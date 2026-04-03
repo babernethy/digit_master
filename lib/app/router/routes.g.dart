@@ -6,28 +6,27 @@ part of 'routes.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [
-      $todayRoute,
-    ];
+List<RouteBase> get $appRoutes => [$todayRoute];
 
-RouteBase get $todayRoute => GoRouteData.$route(
-      path: '/',
-      factory: $TodayRouteExtension._fromState,
-    );
+RouteBase get $todayRoute =>
+    GoRouteData.$route(path: '/', factory: $TodayRoute._fromState);
 
-extension $TodayRouteExtension on TodayRoute {
+mixin $TodayRoute on GoRouteData {
   static TodayRoute _fromState(GoRouterState state) => const TodayRoute();
 
-  String get location => GoRouteData.$location(
-        '/',
-      );
+  @override
+  String get location => GoRouteData.$location('/');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
+  @override
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }

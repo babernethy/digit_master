@@ -8,7 +8,7 @@ part 'guess_entry_widget.freezed.dart';
 part 'guess_entry_widget.g.dart';
 
 @freezed
-class GuessEntryStateData with _$GuessEntryStateData {
+abstract class GuessEntryStateData with _$GuessEntryStateData {
   factory GuessEntryStateData({
     @Default([]) List<int> guess,
   }) = _GuessEntryStateData;
