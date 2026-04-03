@@ -25,7 +25,7 @@ abstract class TodayStateData with _$TodayStateData {
 //this will allow for the state of the page/game to grab a puzzle when it loads
 //based on the current date, and do that in a safe/future way
 @riverpod
-Future<CodePuzzle> createPuzzle(Ref ref, List<int> code) async {
+Future<CodePuzzle> createPuzzle(Ref ref, List<int> code) {
   return createNewPuzzle(code);
 }
 
@@ -165,14 +165,6 @@ List<int> generateRandomListByDate() {
 
 List<int> randomCode() {
   return generateRandomListByDate();
-
-//may want the ability to add non-date driven random codes/puzzles back in.
-  final random = Random();
-  final digits = List<int>.generate(10, (i) => i); // List from 0 to 9
-  digits.shuffle(random);
-
-  final code = digits.take(4).toList();
-  return code;
 }
 
 int countMatchingIntegers(List<int> code, List<int> guess) {

@@ -63,7 +63,7 @@ final class CreatePuzzleProvider
   }
 }
 
-String _$createPuzzleHash() => r'be71dfbedcd6a2e2e9d8c73cf37901907cbb9763';
+String _$createPuzzleHash() => r'66e3cb6305b13159b36d77cd0b464a3199a54abb';
 
 final class CreatePuzzleFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<CodePuzzle>, List<int>> {

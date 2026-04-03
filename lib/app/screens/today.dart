@@ -18,7 +18,7 @@ final List<OnboardingStep> steps = [
     bodyText: 'If you want to try to guess the code in 5 guesses, click here.',
     fullscreen: false,
     titleText: '5 Guesses',
-    overlayColor: Colors.lightBlue.withOpacity(0.9),
+    overlayColor: Colors.lightBlue.withValues(alpha: 0.9),
     overlayShape: const CircleBorder(),
     overlayBehavior: HitTestBehavior.deferToChild,
   ),
@@ -28,7 +28,7 @@ final List<OnboardingStep> steps = [
     bodyText:
         'If you want to try to guess the code in 1 guess, click here. You will get 5 clues to help you.',
     //shape: const CircleBorder(),
-    overlayColor: Colors.lightBlue.withOpacity(0.9),
+    overlayColor: Colors.lightBlue.withValues(alpha: 0.9),
     overlayShape: const CircleBorder(),
     overlayBehavior: HitTestBehavior.deferToChild,
     fullscreen: false,
@@ -114,15 +114,6 @@ class TodayScreen extends ConsumerWidget {
                   return FiveCluesWidget(
                     code: code,
                     puzzle: puzzle,
-                    todayStateActions: todayStateActions,
-                    todayState: todayState,
-                  );
-// need to figure this out another time
-                  final scale = constraints.maxWidth / 700;
-                  return FiveCluesWidget(
-                    code: code,
-                    puzzle: puzzle,
-                    scale: scale,
                     todayStateActions: todayStateActions,
                     todayState: todayState,
                   );
